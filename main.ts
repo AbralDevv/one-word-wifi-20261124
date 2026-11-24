@@ -1,6 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 
+// The entry: one word naming the Wi-Fi — narcoleptic, because the
+// network keeps falling asleep mid-sentence (and so does everyone on it).
 const LINE = "Narcoleptic";
 
 const outDir = process.env.MAKEFUN_OUTPUT_DIR || "/output";
