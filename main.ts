@@ -1,12 +1,14 @@
-import { mkdirSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import fs from "node:fs";
+import path from "node:path";
 
-// The entry: one word, 7 chars — "Alleged"
-const WORD = "Alleged";
+const LINE = "Narcoleptic";
 
-// Output dir resolution: argv -> $MAKEFUN_OUTPUT_DIR -> /output
-const outputDir =
-  process.argv[2] || process.env.MAKEFUN_OUTPUT_DIR || "/output";
-
-mkdirSync(outputDir, { recursive: true });
-writeFileSync(join(outputDir, "entry.txt"), WORD, "utf8");
+const outDir = process.env.MAKEFUN_OUTPUT_DIR || "/output";
+let dir = outDir;
+try {
+  fs.mkdirSync(dir, { recursive: true });
+} catch {
+  dir = "./output";
+  fs.mkdirSync(dir, { recursive: true });
+}
+fs.writeFileSync(path.join(dir, "entry.txt"), LINE, "utf8");
